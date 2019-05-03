@@ -8,4 +8,9 @@ class WorkflowAction extends Config
     {
         return $this->belongsTo(Rclass::class);
     }
+
+    public function fields()
+    {
+        return $this->hasMany(Field::class);
+    }
 }

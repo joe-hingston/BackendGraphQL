@@ -10,5 +10,13 @@ type WorkflowAction {
     action: String!
     from: String!
     to: String!
+    fields: [Field] @hasMany
     rclass: Rclass! @belongsTo
+}
+
+type Field {
+    id: ID!
+    field: String!
+    required: Int!
+    action: WorkflowAction! @belongsTo
 }
