@@ -16,6 +16,7 @@ class CreateWorkflowActionsTable extends Migration
         Schema::create('workflow_actions', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('action');
             $table->string('from');
             $table->string('to');
 

@@ -22,6 +22,5 @@ type Rclass {
     id: ID!
     rclassname: String!
     class: String!
-    contracts: [Contract] @hasMany
-    parties: [Party] @hasMany
+    workflow: [WorkflowAction] @hasMany
 }
