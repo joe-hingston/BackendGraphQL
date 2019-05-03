@@ -21,7 +21,7 @@ class CreateWorkflowActionsTable extends Migration
             $table->string('to');
 
             $table->unsignedInteger('rclass_id');
-            $table->foreign('rclass_id')->references('id')->on('rclasses')->onUpdate('cascade');
+            $table->foreign('rclass_id')->references('id')->on('rclasses');
 
             $table->timestamps();
         });
