@@ -8,4 +8,9 @@ class Contract extends Record
     {
         return $this->hasMany(Party::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }
