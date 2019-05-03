@@ -5,5 +5,68 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 #import config.graphql
-#import user.graphql
 #import contract.graphql
+
+type Query {
+    rclasses: [Rclass] @all
+    rclass(id: ID @eq): Rclass @find
+
+    contracts: [Contract] @all
+    contract(id: ID @eq): Contract @find
+    parties: [Party] @all
+    party(id: ID @eq): Party @find
+    notes: [Note] @all
+    note(id: ID @eq): Note @find
+}
+
+type Mutation {
+    createRclass(
+        rclassname: String! @rules(apply: ["required"])
+        class: String! @rules(apply: ["required"])
+    ): Rclass @create
+    updateRclass(
+        id: ID @rules(apply: ["required"])
+        rclassname: String! @rules(apply: ["required"])
+        class: String! @rules(apply: ["required"])
+    ): Rclass @update
+    deleteRclass(
+        id: ID! @rules(apply: ["required"])
+    ): Rclass @delete
+
+    createContract(
+        title: String @rules(apply: ["required"])
+    ): Contract @create
+    updateContract(
+        id: ID @rules(apply: ["required"])
+        title: String @rules(apply: ["required"])
+    ): Contract @update
+    deleteContract(
+        id: ID! @rules(apply: ["required"])
+    ): Contract @delete
+    createParty(
+        title: String! @rules(apply: ["required"])
+        contract: Int!
+    ): Party @create
+    updateParty(
+        id: ID @rules(apply: ["required"])
+        title: String! @rules(apply: ["required"])
+        contract: Int!
+    ): Party @update
+    deleteParty(
+        id: ID! @rules(apply: ["required"])
+    ): Party @delete
+    createNote(
+        title: String! @rules(apply: ["required"])
+        body: String
+        contract: Int!
+    ): Note @create
+    updateNote(
+        id: ID @rules(apply: ["required"])
+        title: String! @rules(apply: ["required"])
+        body: String @rules(apply: ["required"])
+        contract: Int!
+    ): Note @update
+    deleteNote(
+        id: ID! @rules(apply: ["required"])
+    ): Note @delete
+}

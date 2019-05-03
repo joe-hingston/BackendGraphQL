@@ -1,26 +1,14 @@
-type Query {
-    rclasses: [Rclass] @all
-    rclass(id: ID @eq): Rclass @find
-}
-
-type Mutation {
-    createRclass(
-        rclassname: String! @rules(apply: ["required"])
-        class: String! @rules(apply: ["required"])
-    ): Rclass @create
-    updateRclass(
-        id: ID @rules(apply: ["required"])
-        rclassname: String! @rules(apply: ["required"])
-        class: String! @rules(apply: ["required"])
-    ): Rclass @update
-    deleteRclass(
-        id: ID! @rules(apply: ["required"])
-    ): Rclass @delete
-}
-
 type Rclass {
     id: ID!
     rclassname: String!
     class: String!
-    workflow: [WorkflowAction] @hasMany
+    actions: [WorkflowAction] @belongsTo
+}
+
+type WorkflowAction {
+    id: ID!
+    action: String!
+    from: String!
+    to: String!
+    rclass: Rclass! @belongsTo
 }
