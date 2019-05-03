@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Record extends Model
 {
@@ -12,9 +13,10 @@ class Record extends Model
         parent::boot();
 
         static::creating(function($record) {
-            $rclass = Rclass::where('class', static::class)->first();
-
-            $record->rclass_id = $rclass->id;
+            try {
+                $rclass = Rclass::where('class', static::class)->first();
+                $record->rclass_id = $rclass->id;
+            } catch(ModelNotFoundException $e) {}
         });
     }
 
