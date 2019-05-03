@@ -4,8 +4,8 @@ namespace App;
 
 class Field extends Config
 {
-    public function action()
+    public function rclass()
     {
-        return $this->belongsTo(WorkflowAction::class);
+        return $this->belongsTo(Rclass::class);
     }
 }

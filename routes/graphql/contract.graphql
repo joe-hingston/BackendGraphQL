@@ -1,6 +1,7 @@
 type Contract {
     id: ID!
     title: String!
+    status: String!
     parties: [Party] @hasMany
     notes: [Note] @hasMany
     rclass: Rclass! @hasOne

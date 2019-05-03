@@ -11,6 +11,6 @@ class WorkflowAction extends Config
 
     public function fields()
     {
-        return $this->hasMany(Field::class);
+        return $this->hasMany(WorkflowField::class);
     }
 }

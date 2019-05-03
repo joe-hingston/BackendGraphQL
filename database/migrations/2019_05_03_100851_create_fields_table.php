@@ -18,9 +18,11 @@ class CreateFieldsTable extends Migration
 
             $table->string('field');
             $table->boolean('required');
+            $table->boolean('editable');
+            $table->boolean('summary');
 
-            $table->unsignedInteger('workflow_action_id');
-            $table->foreign('workflow_action_id')->references('id')->on('workflow_actions');
+            $table->unsignedInteger('rclass_id');
+            $table->foreign('rclass_id')->references('id')->on('rclasses');
 
             $table->timestamps();
         });

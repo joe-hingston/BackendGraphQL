@@ -8,4 +8,9 @@ class Rclass extends Config
     {
         return $this->hasMany(WorkflowAction::class);
     }
+
+    public function fields()
+    {
+        return $this->hasMany(Field::class);
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContractsTable extends Migration
+class CreateWorkflowFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateContractsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contracts', function (Blueprint $table) {
+        Schema::create('workflow_fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
 
-            $table->string('status');
+            $table->string('field');
+            $table->boolean('required');
 
-            $table->unsignedInteger('rclass_id');
-            $table->foreign('rclass_id')->references('id')->on('rclasses');
+            $table->unsignedInteger('workflow_action_id');
+            $table->foreign('workflow_action_id')->references('id')->on('workflow_actions');
 
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contracts');
+        Schema::dropIfExists('workflow_fields');
     }
 }

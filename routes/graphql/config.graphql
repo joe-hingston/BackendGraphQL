@@ -2,7 +2,17 @@ type Rclass {
     id: ID!
     rclassname: String!
     class: String!
+    fields: [Field] @belongsTo
     actions: [WorkflowAction] @belongsTo
+}
+
+type Field {
+    id: ID!
+    field: String!
+    required: Int!
+    editable: Int!
+    summary: Int!
+    rclass: Rclass! @belongsTo
 }
 
 type WorkflowAction {
@@ -14,7 +24,7 @@ type WorkflowAction {
     rclass: Rclass! @belongsTo
 }
 
-type Field {
+type WorkflowField {
     id: ID!
     field: String!
     required: Int!
